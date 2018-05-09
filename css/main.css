@@ -1,5 +1,6 @@
 html {
- background-image: url('http://cdn.backgroundhost.com/backgrounds/subtlepatterns/retina_wood.png');
+ /* background-image: url('http://cdn.backgroundhost.com/backgrounds/subtlepatterns/retina_wood.png'); */
+ background-color: #cfcfcf;
 }
 
 .container {
@@ -87,8 +88,6 @@ html {
   background-color : #1c8cff !important;
 }
 
-
-
 .game-center {
   position: absolute;
   top: 100px;
@@ -108,7 +107,6 @@ html {
   display: inline-block;
   height: 50px;
 }
-
 
 .row-center-2 {
   margin: 10px auto;

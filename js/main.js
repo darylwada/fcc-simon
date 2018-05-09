@@ -39,12 +39,13 @@ function checkWin() {
       // wrong
       if (userSequence[i] !== sequence[i]) {
         // alert('wrong');
-        document.getElementById('counter').innerHTML = '!!';
+        document.getElementById('counter').innerHTML = ':(';
         if (strict) {
           startGame();
         }
         resetUser();
         setTimeout(() => {
+          document.getElementById('counter').innerHTML = count.leadingZero();
           playSequence();
         }, 1000)
         return;
@@ -94,6 +95,18 @@ function preventUser() {
   });
 }
 
+function getSpeed(count) {
+  if (count < 5) {
+    return 1000;
+  } else if (count < 10) {
+    return 900;
+  } else if (count < 15) {
+    return 800;
+  } else if (count <= 20) {
+    return 700;
+  }
+}
+
 function playSequence() {
   preventUser();
   (function loop(i) {
@@ -110,7 +123,7 @@ function playSequence() {
       } else {
         allowUser();
       }
-    }, 1000)
+    }, getSpeed(count))
   })(0);
 }
 
