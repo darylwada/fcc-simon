@@ -1,0 +1,170 @@
+html {
+ background-image: url('http://cdn.backgroundhost.com/backgrounds/subtlepatterns/retina_wood.png');
+}
+
+.container {
+  margin: 50px 0 0 0;
+  padding: 0px 15px;
+}
+
+.game-body {
+  margin: 0 auto;
+  width: 450px;
+  height: 450px;
+  border-radius: 100%;
+  border: 1px solid black;
+  background-color: #333;
+}
+
+.btn-container {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  margin: 25px auto;
+  text-align: center;
+}
+
+.inline {
+  display: inline-block;
+}
+
+.btn-game {
+  position: relative;
+  /* margin: 10px; */
+  width: 196px;
+  height: 198px;
+}
+
+#t-l {
+  border-top-left-radius: 100%;
+  -webkit-mask-image: radial-gradient(circle at bottom right, transparent 0, transparent 110px, black 1px);
+}
+
+#t-r {
+  border-top-right-radius: 100%;
+  -webkit-mask-image: radial-gradient(circle at bottom left, transparent 0, transparent 110px, black 1px);
+}
+
+#b-l {
+  border-bottom-left-radius: 100%;
+  -webkit-mask-image: radial-gradient(circle at top right, transparent 0, transparent 110px, black 1px);
+}
+
+#b-r {
+  border-bottom-right-radius: 100%;
+  -webkit-mask-image: radial-gradient(circle at top left, transparent 0, transparent 110px, black 1px);
+}
+
+.green {
+  background-color : #00a74a;
+}
+
+.red {
+  background-color : #9f0f17;
+}
+
+.yellow {
+  background-color : #cca707;
+}
+
+.blue {
+  background-color : #094a8f;
+}
+
+.green-light {
+  background-color : #13ff7c !important;
+}
+
+.red-light {
+  background-color : #ff4c4c !important;
+}
+
+.yellow-light {
+  background-color : #fed93f !important;
+}
+
+.blue-light {
+  background-color : #1c8cff !important;
+}
+
+
+
+.game-center {
+  position: absolute;
+  top: 100px;
+  left: 100px;
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  background-color: #ECE7EE;
+}
+
+.row-center-1 {
+  margin: 20% auto 0 auto;
+  height: 55px;
+}
+
+.container-btn {
+  display: inline-block;
+  height: 50px;
+}
+
+
+.row-center-2 {
+  margin: 10px auto;
+  height: 30px;
+}
+
+#counter {
+  margin: 0 auto;
+  width: 50px;
+  border: 1px solid black;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 30px;
+  line-height: 30px;
+}
+
+.red-text {
+  color : #9f0f17;
+}
+
+.red-light-text {
+  color : #ff4c4c !important;
+}
+
+.row-center-3 {
+  height: 30px;
+}
+
+.label {
+  margin-top: 5px;
+  text-align: center;
+}
+
+.clickable:hover {
+  cursor:pointer;
+}
+
+#start {
+  background-color: red;
+  height: 15px;
+  border-radius: 100%;
+  outline: none;
+}
+
+#strict {
+  background-color: yellow;
+  height: 15px;
+  border-radius: 100%;
+  outline: none;
+}
+
+#strict-light {
+  height: 5px;
+  width: 5px;
+  border-radius: 100%;
+  background-color: black;
+  border: 0.5px solid black;
+  margin: 0 auto;
+}
