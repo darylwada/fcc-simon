@@ -1,9 +1,9 @@
 let on = false;
 let started = false;
 let count = 1;
-let squares = ['t-l', 't-r', 'b-l', 'b-r'];
-let colors = ['green', 'red', 'yellow', 'blue'];
-let colorsLight = ['green-light', 'red-light', 'yellow-light', 'blue-light'];
+const squares = ['t-l', 't-r', 'b-l', 'b-r'];
+const colors = ['green', 'red', 'yellow', 'blue'];
+const colorsLight = ['green-light', 'red-light', 'yellow-light', 'blue-light'];
 let sequence = [];
 let userSequence = [];
 let userCount = 0;
@@ -33,37 +33,33 @@ function resetSequence() {
 }
 
 function checkWin() {
-  if (userCount === count) {
-    preventUser();
-    for (let i = 0; i < userSequence.length; i++) {
-      // wrong
-      if (userSequence[i] !== sequence[i]) {
-        // alert('wrong');
-        document.getElementById('counter').innerHTML = ':(';
-        if (strict) {
-          startGame();
-        }
-        resetUser();
-        setTimeout(() => {
-          document.getElementById('counter').innerHTML = count.leadingZero();
-          playSequence();
-        }, 1000)
-        return;
+  // check if wrong
+  for (let i = 0; i < userSequence.length; i++) {
+    if (userSequence[i] !== sequence[i]) {
+      document.getElementById('counter').innerHTML = ':(';
+      if (strict) {
+        startClick();
       }
+      resetUser();
+      setTimeout(() => {
+        document.getElementById('counter').innerHTML = count.leadingZero();
+        playSequence();
+      }, 1000)
+      return;
     }
-    // alert('correct');
-    if (count === 20) {
-      alert('You Won!');
-      startGame();
-    }
-    document.getElementById('counter').innerHTML = ':)';
-    // correct
-    resetUser();
-    count++;
-    setTimeout(() => {
-      generateSequence();
-    }, 1000)
   }
+  // check if won game
+  if (count === 20) {
+    alert('You Won!');
+    startClick();
+  }
+  // if not wrong and not won game, go on to next count
+  document.getElementById('counter').innerHTML = ':)';
+  resetUser();
+  count++;
+  setTimeout(() => {
+    generateSequence();
+  }, 1000)
 }
 
 function userInput() {
@@ -74,14 +70,15 @@ function userInput() {
   }, 100)
   userSequence.push(this.id);
   userCount++;
-  checkWin();
+  if (userCount === count) {
+    preventUser();
+    checkWin();
+  }
 }
 
 function allowUser() {
   Array.from(document.getElementsByClassName('btn-game')).forEach(function(element) {
     element.addEventListener('click', userInput)
-  });
-  Array.from(document.getElementsByClassName('btn-game')).forEach(function(element) {
     element.classList.add('clickable');
   });
 }
@@ -89,8 +86,6 @@ function allowUser() {
 function preventUser() {
   Array.from(document.getElementsByClassName('btn-game')).forEach(function(element) {
     element.removeEventListener('click', userInput)
-  });
-  Array.from(document.getElementsByClassName('btn-game')).forEach(function(element) {
     element.classList.remove('clickable');
   });
 }
@@ -110,13 +105,12 @@ function getSpeed(count) {
 function playSequence() {
   preventUser();
   (function loop(i) {
-    let sequenceId = sequence[i];
     setTimeout(() => {
-      document.getElementById(sequenceId).classList.add(colorsLight[squares.indexOf(sequenceId)]);
-      playAudio(sequenceId);
+      document.getElementById(sequence[i]).classList.add(colorsLight[squares.indexOf(sequence[i])]);
+      playAudio(sequence[i]);
     }, 300)
     setTimeout(() => {
-      document.getElementById(sequenceId).classList.remove(colorsLight[squares.indexOf(sequenceId)]);
+      document.getElementById(sequence[i]).classList.remove(colorsLight[squares.indexOf(sequence[i])]);
       if (i < sequence.length - 1) {
         i++;
         loop(i);
@@ -136,11 +130,11 @@ function generateSequence() {
 }
 
 // game switches
-document.getElementById('start').addEventListener('click', startGame);
-document.getElementById('strict').addEventListener('click', strictPress);
+document.getElementById('start').addEventListener('click', startClick);
+document.getElementById('strict').addEventListener('click', strictClick);
 
 
-function strictPress() {
+function strictClick() {
   if (strict) {
     document.getElementById('strict-light').style.backgroundColor = '';
   } else if (!strict) {
@@ -149,7 +143,7 @@ function strictPress() {
   strict = !strict;
 }
 
-function startGame() {
+function startClick() {
   if (!on) {
     return;
   }
@@ -163,6 +157,7 @@ function startGame() {
   }, 1000)
 }
 
+// on/off switch click handler
 function switchClick() {
   if (on) {
     on = false;
@@ -179,7 +174,7 @@ function switchClick() {
   }
 }
 
-// on/off switch
+// on/off switch event listener
 Array.from(document.getElementsByName("switch")).forEach(function(element) {
   element.addEventListener('click', switchClick);
 });
